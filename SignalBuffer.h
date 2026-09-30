@@ -4,6 +4,7 @@
 
 #include <algorithm>
 #include <cstddef>
+#include <iostream>
 #include <stdexcept>
 #include <string>
 #include <type_traits>
@@ -17,6 +18,8 @@ private:
     std::size_t size_;       // current number of elements
     std::size_t capacity_;   // maximum number of elements
     bool        sorted_;     // true if data_[0..size_) is in ascending order
+
+    static constexpr std::size_t DISPLAY_LIMIT = 25;   // max values printed by <<
 
 public:
     // Creates an empty buffer with the given capacity.
@@ -73,5 +76,43 @@ public:
     void sort() {
         std::sort(data_, data_ + size_);
         sorted_ = true;
+    }
+
+    // ---- Operators ----------------------------------------------------
+
+    // Read-only access with bounds checking.
+    const T& operator[](std::size_t index) const {
+        if (index >= size_)
+            throw std::out_of_range("Invalid index " + std::to_string(index) +
+                                    " (size is " + std::to_string(size_) + ").");
+        return data_[index];
+    }
+
+    // Writable access with bounds checking. The caller may change the value,
+    // so the buffer conservatively marks itself UNSORTED.
+    T& operator[](std::size_t index) {
+        if (index >= size_)
+            throw std::out_of_range("Invalid index " + std::to_string(index) +
+                                    " (size is " + std::to_string(size_) + ").");
+        sorted_ = false;
+        return data_[index];
+    }
+
+    // buffer += value;  appends one reading.
+    SignalBuffer& operator+=(const T& value) {
+        append(value);
+        return *this;
+    }
+
+    // cout << buffer;  prints at most 25 values.
+    friend std::ostream& operator<<(std::ostream& os, const SignalBuffer& b) {
+        if (b.size_ == 0) return os << "(empty)";
+        const std::size_t shown = std::min(b.size_, DISPLAY_LIMIT);
+        for (std::size_t i = 0; i < shown; ++i) {
+            if (i > 0) os << ' ';
+            os << b.data_[i];
+        }
+        if (b.size_ > DISPLAY_LIMIT) os << "\n... additional values not shown";
+        return os;
     }
 };
