@@ -5,8 +5,8 @@ readings and searches them with four algorithms, counting comparisons and
 timing each search.
 
 ## Links
-- YouTube demo: _add link_
-- LinkedIn post: _add link_
+- YouTube demo: 
+- LinkedIn post: https://github.com/Adnanali56/SignalScope/tree/main
 
 ## What it does
 - Stores `int` or `double` readings in one template class, `SignalBuffer<T>`
