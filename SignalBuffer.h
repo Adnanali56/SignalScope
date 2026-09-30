@@ -27,6 +27,32 @@ public:
         data_ = new T[capacity_]();
     }
 
+    // ---- Rule of Three ----------------------------------------------
+
+    // 1. Copy constructor: allocates its OWN array and copies the values (deep copy).
+    SignalBuffer(const SignalBuffer& other)
+        : data_(new T[other.capacity_]()), size_(other.size_),
+          capacity_(other.capacity_), sorted_(other.sorted_) {
+        std::copy(other.data_, other.data_ + other.size_, data_);
+    }
+
+    // 2. Copy assignment: deep copy, safe for self-assignment (a = a).
+    SignalBuffer& operator=(const SignalBuffer& other) {
+        if (this != &other) {
+            T* newData = new T[other.capacity_]();   // allocate first
+            std::copy(other.data_, other.data_ + other.size_, newData);
+            delete[] data_;                          // then release the old array
+            data_     = newData;
+            size_     = other.size_;
+            capacity_ = other.capacity_;
+            sorted_   = other.sorted_;
+        }
+        return *this;
+    }
+
+    // 3. Destructor: releases the dynamic array.
+    ~SignalBuffer() { delete[] data_; }
+
     // Queries
     std::size_t size() const { return size_; }
     std::size_t capacity() const { return capacity_; }
