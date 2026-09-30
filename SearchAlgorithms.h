@@ -141,3 +141,64 @@ SearchReport ternarySearch(const SignalBuffer<T>& buffer, const T& target) {
 
     return SearchReport(name, detail::toText(target), index, comparisons, ns);
 }
+
+// ---------------------------------------------------------------------
+// 4. Interpolation Search - sorted numeric data only. Estimates the
+//    position from the value range. Equal boundary values (which would
+//    divide by zero) are handled explicitly. After a hit, we walk left
+//    so the LOWEST index of a duplicate run is reported.
+// ---------------------------------------------------------------------
+template <typename T>
+SearchReport interpolationSearch(const SignalBuffer<T>& buffer, const T& target) {
+    static_assert(std::is_arithmetic_v<T>, "Interpolation search needs numeric data.");
+    const std::string name = "Interpolation Search";
+    detail::requireSorted(buffer, name);
+
+    long long comparisons = 0;
+    long long found = -1;
+
+    const auto start = detail::Clock::now();
+    long long lo = 0;
+    long long hi = static_cast<long long>(buffer.size()) - 1;
+
+    while (lo <= hi) {
+        ++comparisons;
+        if (target < buffer[static_cast<std::size_t>(lo)]) break;
+        ++comparisons;
+        if (target > buffer[static_cast<std::size_t>(hi)]) break;
+
+        // (element-vs-element check, not a target comparison, so it is not counted)
+        if (buffer[static_cast<std::size_t>(lo)] == buffer[static_cast<std::size_t>(hi)]) {
+            // Every value in [lo, hi] is identical: avoid division by zero.
+            ++comparisons;
+            if (buffer[static_cast<std::size_t>(lo)] == target) found = lo;
+            break;
+        }
+
+        const long double loVal = static_cast<long double>(buffer[static_cast<std::size_t>(lo)]);
+        const long double hiVal = static_cast<long double>(buffer[static_cast<std::size_t>(hi)]);
+        const long double frac  = (static_cast<long double>(target) - loVal) / (hiVal - loVal);
+        long long pos = lo + static_cast<long long>(frac * static_cast<long double>(hi - lo));
+        if (pos < lo) pos = lo;
+        if (pos > hi) pos = hi;
+
+        ++comparisons;
+        if (buffer[static_cast<std::size_t>(pos)] == target) {
+            found = pos;
+            break;
+        }
+        ++comparisons;
+        if (buffer[static_cast<std::size_t>(pos)] < target) lo = pos + 1;
+        else                                                hi = pos - 1;
+    }
+
+    // Walk left to the first occurrence of a duplicate run.
+    while (found > 0) {
+        ++comparisons;
+        if (buffer[static_cast<std::size_t>(found - 1)] == target) --found;
+        else break;
+    }
+    const long long ns = detail::elapsedNs(start);
+
+    return SearchReport(name, detail::toText(target), found, comparisons, ns);
+}
