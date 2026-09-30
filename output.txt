@@ -1,0 +1,228 @@
+
+=================================================
+       SIGNALSCOPE - SEARCH ANALYZER
+=================================================
+
+Data Type: INTEGER
+Elements: 0
+Capacity: 50
+Status: SORTED
+
+ 1. Create/Reset Dataset
+ 2. Generate Random Readings
+ 3. Append Reading
+ 4. Display Dataset
+ 5. Sort Dataset
+ 6. Linear Search
+ 7. Binary Search
+ 8. Ternary Search
+ 9. Interpolation Search
+10. Compare All Searches
+11. Test Copy Operation
+12. Switch Data Type
+ 0. Exit
+
+Enter selection: 1
+Capacity for new dataset: 7
+New empty dataset created (capacity 7).
+
+=================================================
+       SIGNALSCOPE - SEARCH ANALYZER
+=================================================
+
+Data Type: INTEGER
+Elements: 0
+Capacity: 7
+Status: SORTED
+
+ 1. Create/Reset Dataset
+ 2. Generate Random Readings
+ 3. Append Reading
+ 4. Display Dataset
+ 5. Sort Dataset
+ 6. Linear Search
+ 7. Binary Search
+ 8. Ternary Search
+ 9. Interpolation Search
+10. Compare All Searches
+11. Test Copy Operation
+12. Switch Data Type
+ 0. Exit
+
+Enter selection: 5
+Dataset is empty. Nothing to sort.
+
+=================================================
+       SIGNALSCOPE - SEARCH ANALYZER
+=================================================
+
+Data Type: INTEGER
+Elements: 0
+Capacity: 7
+Status: SORTED
+
+ 1. Create/Reset Dataset
+ 2. Generate Random Readings
+ 3. Append Reading
+ 4. Display Dataset
+ 5. Sort Dataset
+ 6. Linear Search
+ 7. Binary Search
+ 8. Ternary Search
+ 9. Interpolation Search
+10. Compare All Searches
+11. Test Copy Operation
+12. Switch Data Type
+ 0. Exit
+
+Enter selection: 1
+Capacity for new dataset: 9
+New empty dataset created (capacity 9).
+
+=================================================
+       SIGNALSCOPE - SEARCH ANALYZER
+=================================================
+
+Data Type: INTEGER
+Elements: 0
+Capacity: 9
+Status: SORTED
+
+ 1. Create/Reset Dataset
+ 2. Generate Random Readings
+ 3. Append Reading
+ 4. Display Dataset
+ 5. Sort Dataset
+ 6. Linear Search
+ 7. Binary Search
+ 8. Ternary Search
+ 9. Interpolation Search
+10. Compare All Searches
+11. Test Copy Operation
+12. Switch Data Type
+ 0. Exit
+
+Enter selection: 6
+Enter target: 5
+
+
+Error: Linear Search cannot run on an empty dataset.
+
+=================================================
+       SIGNALSCOPE - SEARCH ANALYZER
+=================================================
+
+Data Type: INTEGER
+Elements: 0
+Capacity: 9
+Status: SORTED
+
+ 1. Create/Reset Dataset
+ 2. Generate Random Readings
+ 3. Append Reading
+ 4. Display Dataset
+ 5. Sort Dataset
+ 6. Linear Search
+ 7. Binary Search
+ 8. Ternary Search
+ 9. Interpolation Search
+10. Compare All Searches
+11. Test Copy Operation
+12. Switch Data Type
+ 0. Exit
+
+Enter selection: 2
+Number of readings: 9
+Minimum value: 10
+Maximum value: 99
+Random seed: 2012  26
+
+9 readings generated.
+
+=================================================
+       SIGNALSCOPE - SEARCH ANALYZER
+=================================================
+
+Data Type: INTEGER
+Elements: 9
+Capacity: 9
+Status: UNSORTED
+
+ 1. Create/Reset Dataset
+ 2. Generate Random Readings
+ 3. Append Reading
+ 4. Display Dataset
+ 5. Sort Dataset
+ 6. Linear Search
+ 7. Binary Search
+ 8. Ternary Search
+ 9. Interpolation Search
+10. Compare All Searches
+11. Test Copy Operation
+12. Switch Data Type
+ 0. Exit
+
+Enter selection: 4
+
+Dataset:
+29 78 47 96 97 96 18 73 53
+
+Dataset Status: UNSORTED
+
+=================================================
+       SIGNALSCOPE - SEARCH ANALYZER
+=================================================
+
+Data Type: INTEGER
+Elements: 9
+Capacity: 9
+Status: UNSORTED
+
+ 1. Create/Reset Dataset
+ 2. Generate Random Readings
+ 3. Append Reading
+ 4. Display Dataset
+ 5. Sort Dataset
+ 6. Linear Search
+ 7. Binary Search
+ 8. Ternary Search
+ 9. Interpolation Search
+10. Compare All Searches
+11. Test Copy Operation
+12. Switch Data Type
+ 0. Exit
+
+Enter selection: 6
+Enter target: 47
+
+Algorithm: Linear Search
+Target: 47
+Result: FOUND
+Index: 2
+Comparisons: 3
+Time: 572 nanoseconds
+
+=================================================
+       SIGNALSCOPE - SEARCH ANALYZER
+=================================================
+
+Data Type: INTEGER
+Elements: 9
+Capacity: 9
+Status: UNSORTED
+
+ 1. Create/Reset Dataset
+ 2. Generate Random Readings
+ 3. Append Reading
+ 4. Display Dataset
+ 5. Sort Dataset
+ 6. Linear Search
+ 7. Binary Search
+ 8. Ternary Search
+ 9. Interpolation Search
+10. Compare All Searches
+11. Test Copy Operation
+12. Switch Data Type
+ 0. Exit
+
+Enter selection: sdddddddddddddddd                 
